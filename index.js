@@ -20,17 +20,17 @@ const connect = async () => {
         syncFullHistory: true,
         version,
         markOnlineOnConnect: false,
-        // options: {
-        //     proxy: {
-        //         host: "185.199.229.156",
-        //         port: "7492",
-        //         auth: {
-        //             username: "kauhwjxz",
-        //             password: "nz8hufnch0pg",
-        //         },
-        //         // protocol: "httpss",
-        //     },
-        // },
+        options: {
+            proxy: {
+                host: "185.199.229.156",
+                port: "7492",
+                auth: {
+                    username: "kauhwjxz",
+                    password: "nz8hufnch0pg",
+                },
+                protocol: "http",
+            },
+        },
     });
 
     client.ev.on("creds.update", saveCreds);
