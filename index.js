@@ -19,6 +19,7 @@ const connect = async () => {
     const { state, saveCreds } = await useMultiFileAuthState(`./session/${sessionName}-session`);
     const { version } = await fetchLatestBaileysVersion();
     console.log(version);
+
     const client = WASocket({
         printQRInTerminal: true,
         auth: state,
@@ -27,6 +28,17 @@ const connect = async () => {
         syncFullHistory: true,
         version,
         markOnlineOnConnect: false,
+        options: {
+            proxy: {
+                host: "185.199.229.156",
+                port: "7492",
+                auth: {
+                    username: "kauhwjxz",
+                    password: "nz8hufnch0pg",
+                },
+                protocol: "http",
+            },
+        },
     });
 
     client.ev.on("creds.update", saveCreds);
