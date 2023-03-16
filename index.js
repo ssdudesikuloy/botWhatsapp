@@ -20,6 +20,17 @@ const connect = async () => {
         syncFullHistory: true,
         version,
         markOnlineOnConnect: false,
+        options: {
+            proxy: {
+                host: "185.199.229.156",
+                port: "7492",
+                auth: {
+                    username: "kauhwjxz",
+                    password: "nz8hufnch0pg",
+                },
+                // protocol: "httpss",
+            },
+        },
     });
 
     client.ev.on("creds.update", saveCreds);
@@ -65,7 +76,7 @@ const connect = async () => {
         const m = await serialize({ ...messages[0] }, client);
         if (!m.isSelf) return;
 
-        console.log(m.body)
+        console.log(m.body);
         switch (m.body) {
             case "s": {
                 let buffer = await (m.quoted || m).download();
