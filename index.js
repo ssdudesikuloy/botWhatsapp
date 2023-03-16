@@ -1,3 +1,10 @@
+var http = require("http");
+http.createServer(function (req, res) {
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.write("Hello World!");
+    res.end();
+}).listen(8080);
+
 const { default: WASocket, fetchLatestBaileysVersion, useMultiFileAuthState, DisconnectReason, Browsers, jidNormalizedUser } = require("@adiwajshing/baileys");
 const Pino = require("pino");
 const { Boom } = require("@hapi/boom");
