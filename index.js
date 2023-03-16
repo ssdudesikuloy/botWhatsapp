@@ -7,6 +7,9 @@ const { imageToWebp, videoToWebp } = require("./lib/ezgif.js");
 const FileType = require("file-type");
 const Jimp = require("jimp");
 const { apk4all } = require("./lib/apk4all.js");
+const HttpsProxyAgent = require("https-proxy-agent");
+
+const proxyAgent = new HttpsProxyAgent("http://kauhwjxz:nz8hufnch0pg@185.199.229.156:7492");
 
 const connect = async () => {
     const { state, saveCreds } = await useMultiFileAuthState(`./session/${sessionName}-session`);
@@ -20,17 +23,18 @@ const connect = async () => {
         syncFullHistory: true,
         version,
         markOnlineOnConnect: false,
-        options: {
-            proxy: {
-                host: "185.199.229.156",
-                port: "7492",
-                auth: {
-                    username: "kauhwjxz",
-                    password: "nz8hufnch0pg",
-                },
-                protocol: "http",
-            },
-        },
+        // options: {
+        //     proxy: {
+        //         host: "185.199.229.156",
+        //         port: "7492",
+        //         auth: {
+        //             username: "kauhwjxz",
+        //             password: "nz8hufnch0pg",
+        //         },
+        //         protocol: "http",
+        //     },
+        // },
+        agent: proxyAgent,
     });
 
     client.ev.on("creds.update", saveCreds);
