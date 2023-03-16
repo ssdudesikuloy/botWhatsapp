@@ -1,10 +1,3 @@
-var http = require("http");
-http.createServer(function (req, res) {
-    res.writeHead(200, { "Content-Type": "text/plain" });
-    res.write("Hello World!");
-    res.end();
-}).listen(8080);
-
 const { default: WASocket, fetchLatestBaileysVersion, useMultiFileAuthState, DisconnectReason, Browsers, jidNormalizedUser } = require("@adiwajshing/baileys");
 const Pino = require("pino");
 const { Boom } = require("@hapi/boom");
@@ -14,11 +7,13 @@ const { imageToWebp, videoToWebp } = require("./lib/ezgif.js");
 const FileType = require("file-type");
 const Jimp = require("jimp");
 const { apk4all } = require("./lib/apk4all.js");
+const HttpsProxyAgent = require('https-proxy-agent');
+
+const proxyAgent = new HttpsProxyAgent('http://kauhwjxz:nz8hufnch0pg@185.199.229.156:7492');
 
 const connect = async () => {
     const { state, saveCreds } = await useMultiFileAuthState(`./session/${sessionName}-session`);
     const { version } = await fetchLatestBaileysVersion();
-    console.log(version);
 
     const client = WASocket({
         printQRInTerminal: true,
@@ -39,6 +34,7 @@ const connect = async () => {
                 protocol: "http",
             },
         },
+        agent: proxyAgent
     });
 
     client.ev.on("creds.update", saveCreds);
