@@ -11,26 +11,15 @@ const { apk4all } = require("./lib/apk4all.js");
 const connect = async () => {
     const { state, saveCreds } = await useMultiFileAuthState(`./session/${sessionName}-session`);
     const { version } = await fetchLatestBaileysVersion();
-
+    console.log(version);
     const client = WASocket({
         printQRInTerminal: true,
         auth: state,
-        logger: Pino({ level: "silent" }),
+        // logger: Pino({ level: "silent" }),
         browser: Browsers.macOS("Desktop"),
         syncFullHistory: true,
         version,
         markOnlineOnConnect: false,
-        options: {
-            proxy: {
-                host: "185.199.229.156",
-                port: "7492",
-                auth: {
-                    username: "kauhwjxz",
-                    password: "nz8hufnch0pg",
-                },
-                protocol: "http",
-            },
-        },
     });
 
     client.ev.on("creds.update", saveCreds);
