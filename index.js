@@ -104,8 +104,8 @@ const connect = async () => {
                 });
                 break;
             }
-            case "setpp": {
-                var res = !quoted ? await download() : await download(true);
+            case "setppfull": {
+                var res = await (m.quoted || m).download();
                 if (!Buffer.isBuffer(res)) return;
                 res = await reSize(res, 1280, 720);
                 await client.query({
