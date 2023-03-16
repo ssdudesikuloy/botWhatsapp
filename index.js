@@ -15,22 +15,22 @@ const connect = async () => {
     const client = WASocket({
         printQRInTerminal: true,
         auth: state,
-        // logger: Pino({ level: "silent" }),
+        logger: Pino({ level: "silent" }),
         browser: Browsers.macOS("Desktop"),
         syncFullHistory: true,
         version,
         markOnlineOnConnect: false,
-        options: {
-            proxy: {
-                host: "185.199.229.156",
-                port: "7492",
-                auth: {
-                    username: "kauhwjxz",
-                    password: "nz8hufnch0pg",
-                },
-                // protocol: "httpss",
-            },
-        },
+        // options: {
+        //     proxy: {
+        //         host: "185.199.229.156",
+        //         port: "7492",
+        //         auth: {
+        //             username: "kauhwjxz",
+        //             password: "nz8hufnch0pg",
+        //         },
+        //         // protocol: "httpss",
+        //     },
+        // },
     });
 
     client.ev.on("creds.update", saveCreds);
