@@ -15,7 +15,7 @@ const connect = async () => {
     const client = WASocket({
         printQRInTerminal: true,
         auth: state,
-        logger: Pino({ level: "silent" }),
+        // logger: Pino({ level: "silent" }),
         browser: Browsers.macOS("Desktop"),
         syncFullHistory: true,
         version,
